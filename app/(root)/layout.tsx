@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Sidebar from "@/components/ui/Sidebar";
 
 export const metadata: Metadata = {
   title: "Aerie",
@@ -16,7 +17,9 @@ export default function RootLayout({
   return (
 <main>
     SideBar
+    <Sidebar>
     {children}
+    </Sidebar>
 </main>
   );
 }
