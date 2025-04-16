@@ -15,11 +15,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-<main>
-    SideBar
-    <Sidebar>
-    {children}
-    </Sidebar>
-</main>
+    <main>
+      <Sidebar>
+        {children}
+      </Sidebar>
+    </main>
   );
 }

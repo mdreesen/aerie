@@ -10,6 +10,7 @@ import {
 } from '@heroicons/react/20/solid'
 import HeaderBox from '@/components/ui/HeaderBox'
 import TotalBalanceBox from '@/components/ui/TotalBalanceBox'
+import RightSideBar from '@/components/ui/RightSideBar';
 
 const features = [
     {
@@ -46,11 +47,11 @@ const features = [
 
 export default function Page() {
 
-    // const loggedIn = {
-    //     firstName: 'Michael',
-    //     lastName: 'Dreesen',
-    //     email: 'mdreesen90@gmail.com'
-    // }
+    const loggedIn = {
+        firstName: 'Michael',
+        lastName: 'Dreesen',
+        email: 'mdreesen90@gmail.com'
+    }
 
     return (
         <div className="bg-white">
@@ -71,6 +72,14 @@ export default function Page() {
                         totalBanks={1}
                         totalCurrentBalance={1250.30}
                     />
+
+                    <div>
+                    <RightSideBar
+                        user={loggedIn}
+                        transactions={[]}
+                        banks={[{ currentBalance: 123.50}, {currentBalance: 124.50}]}
+                    />
+                    </div>
                 </div>
 
                 {/* Feature section */}

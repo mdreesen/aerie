@@ -31,6 +31,18 @@ declare interface SidebarProps {
     user: User;
 }
 
+declare interface RightSideBarProps {
+    user: any,
+    transactions?: Array;
+    banks: Array;
+}
+
+declare interface CreditCardProps {
+    account?: Array,
+    userName?: String;
+    showBalance?: Boolean;
+}
+
 declare interface DoughnutChartProps {
     accounts: Array;
 }

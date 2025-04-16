@@ -3,7 +3,7 @@ import DoughnutChart from './charts/DoughnutChart';
 
 export default function TotalBalanceBox({ accounts = [], totalBanks, totalCurrentBalance }: TotalBalanceBoxProps) {
     return (
-        <section className='rounded border text-center flex p-4'>
+        <section className='rounded border text-center flex p-4 h-[198px]'>
             <div className='w-[40%]'>
                 {/* Donut Chart Here */}
                 <DoughnutChart accounts={accounts} />
