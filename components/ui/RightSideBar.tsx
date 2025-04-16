@@ -1,13 +1,20 @@
+import Link from "next/link";
 import BankCard from "./BankCard";
 
 export default function RightSideBar({ user, transactions, banks }: RightSideBarProps) {
     return (
-        <aside>
-            <section>
-                <div></div>
+        <div className="mt-10">
+            <section className="pb-4">
+                <div className="flex justify-center items-center gap-4">
+                    <h2 className="text-pretty text-xl font-semibold tracking-tight text-gray-900 sm:text-balance sm:text-xl">My Banks</h2>
 
-                <div>
-                    My Banks
+                    <Link href="/" className="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                        <span>Add Bank</span>
+                    </Link>
+
                 </div>
             </section>
 
@@ -38,6 +45,6 @@ export default function RightSideBar({ user, transactions, banks }: RightSideBar
                     </div>
                 )}
             </section>
-        </aside>
+        </div>
     );
 }

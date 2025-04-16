@@ -1,5 +1,3 @@
-'use client'
-
 import {
     ArrowPathIcon,
     CloudArrowUpIcon,
@@ -11,6 +9,7 @@ import {
 import HeaderBox from '@/components/ui/HeaderBox'
 import TotalBalanceBox from '@/components/ui/TotalBalanceBox'
 import RightSideBar from '@/components/ui/RightSideBar';
+import { getLoggedInUser } from '@/actions/user.actions';
 
 const features = [
     {
@@ -45,13 +44,9 @@ const features = [
     },
 ];
 
-export default function Page() {
+export default async function Page() {
 
-    const loggedIn = {
-        firstName: 'Michael',
-        lastName: 'Dreesen',
-        email: 'mdreesen90@gmail.com'
-    }
+    const loggedIn = await getLoggedInUser();
 
     return (
         <div className="bg-white">
@@ -62,7 +57,7 @@ export default function Page() {
                         <HeaderBox
                             type="greeting"
                             title="Welcome"
-                            user={'Michael'}
+                            user={loggedIn?.name}
                             subtext="Access and manage your account and transactions efficiently"
                         />
                     </div>

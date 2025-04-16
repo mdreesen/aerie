@@ -14,9 +14,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-<main>
-    SideBar
-    {children}
-</main>
+    <main>
+      {children}
+    </main>
   );
 }

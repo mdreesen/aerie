@@ -4,6 +4,7 @@ declare interface User {
     userId: string,
     dwollaCustomerUrl: string,
     dwollaCustomerId: string,
+    name: string,
     firstName: string,
     lastName: string,
     address1: string,
@@ -12,7 +13,26 @@ declare interface User {
     postalCode: string,
     dateOfBirth: string,
     ssn: string
-}
+};
+
+declare interface SignUpParams {
+    email: string,
+    password: string,
+    name: string,
+    firstName?: string,
+    lastName?: string,
+    address1?: string,
+    city?: string,
+    state?: string,
+    postalCode?: string,
+    dateOfBirth?: string,
+    ssn?: string
+};
+
+declare interface SignInProps {
+    email: string,
+    password: string,
+};
 
 declare interface HeaderBoxProps {
     type?: "title" | "greeting",
