@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import Sidebar from "@/components/ui/Sidebar";
+import Sidebar from "@/components/ui/navbar/Sidebar";
+import { getLoggedInUser } from '@/actions/user.actions';
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Aerie",
@@ -9,14 +11,19 @@ export const metadata: Metadata = {
   }
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const loggedIn = await getLoggedInUser();
+
+  if(!loggedIn) redirect('/sign-in')
+
   return (
     <main>
-      <Sidebar>
+      <Sidebar user={loggedIn}>
         {children}
       </Sidebar>
     </main>

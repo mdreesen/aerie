@@ -18,7 +18,6 @@ declare interface User {
 declare interface SignUpParams {
     email: string,
     password: string,
-    name: string,
     firstName?: string,
     lastName?: string,
     address1?: string,

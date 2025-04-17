@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from "next/image";
 
 import { useState } from 'react'
 import { Dialog, DialogBackdrop, DialogPanel, TransitionChild } from '@headlessui/react'
@@ -13,6 +14,8 @@ import {
   UsersIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
+import { logoutAccount } from '@/actions/user.actions';
+import { useRouter } from 'next/navigation';
 
 const navigation = [
   { name: 'Dashboard', href: '/', icon: HomeIcon, current: true },
@@ -33,12 +36,42 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Sidebar({
-    children,
-  }: Readonly<{
-    children: React.ReactNode;
-  }>) {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+export default function Sidebar({ children, user }: { children: any, user: any }) {
+  console.log(user);
+  const router = useRouter();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const handleLogOut = async () => {
+    const loggedOut = await logoutAccount();
+
+    if (loggedOut) router.push('/sign-in');
+  }
+
+  {/* Footer in Nav */ }
+  const navProfile = (
+    <li className="-mx-6 mt-auto flex items-center gap-x-2 px-2 py-1 text-sm/6 font-semibold text-white hover:bg-indigo-700">
+
+
+      <div className='text-xl font-bold text-white-700 flex flex-col justify-center items-center'>
+        <span aria-hidden="true">{user?.name[0]}</span>
+      </div>
+      <div>
+        <h1 className='text-14 truncate font-semibold text-white-600'>{user?.name}</h1>
+        <p className='text-14 truncate font-normal text-white-600'>
+          {user?.email}
+        </p>
+      </div>
+        <div onClick={handleLogOut}>
+          <Image
+            alt="Pay pass"
+            src="/assets/navigation/logout.png"
+            height={40}
+            width={40}
+            className='object-cover size-8 bg-white rounded-full p-1 w-full'
+          />
+        </div>
+    </li>
+  );
 
   return (
     <>
@@ -63,7 +96,7 @@ export default function Sidebar({
                 </div>
               </TransitionChild>
               {/* Sidebar component, swap this element with another sidebar if you like */}
-              <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-2">
+              <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-2">
                 <div className="flex h-16 shrink-0 items-center">
                   {/* <img
                     alt="Your Company"
@@ -99,7 +132,7 @@ export default function Sidebar({
                         ))}
                       </ul>
                     </li>
-                    <li>
+                    {/* <li>
                       <div className="text-xs/6 font-semibold text-indigo-200">Your teams</div>
                       <ul role="list" className="-mx-2 mt-2 space-y-1">
                         {teams.map((team) => (
@@ -121,7 +154,8 @@ export default function Sidebar({
                           </li>
                         ))}
                       </ul>
-                    </li>
+                    </li> */}
+                    {navProfile}
                   </ul>
                 </nav>
               </div>
@@ -132,7 +166,7 @@ export default function Sidebar({
         {/* Static sidebar for desktop */}
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6">
+          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6">
             <div className="flex h-16 shrink-0 items-center">
               {/* <img
                 alt="Your Company"
@@ -169,8 +203,8 @@ export default function Sidebar({
                   </ul>
                 </li>
                 <li>
-                  <div className="text-xs/6 font-semibold text-indigo-200">Your teams</div>
-                  <ul role="list" className="-mx-2 mt-2 space-y-1">
+                  {/* <div className="text-xs/6 font-semibold text-indigo-200">Your teams</div> */}
+                  {/* <ul role="list" className="-mx-2 mt-2 space-y-1">
                     {teams.map((team) => (
                       <li key={team.name}>
                         <Link
@@ -189,28 +223,17 @@ export default function Sidebar({
                         </Link>
                       </li>
                     ))}
-                  </ul>
+                  </ul> */}
                 </li>
-                <li className="-mx-6 mt-auto">
-                  <Link
-                    href="#"
-                    className="flex items-center gap-x-4 px-6 py-3 text-sm/6 font-semibold text-white hover:bg-indigo-700"
-                  >
-                    {/* <img
-                      alt=""
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      className="size-8 rounded-full bg-indigo-700"
-                    /> */}
-                    <span className="sr-only">Your profile</span>
-                    <span aria-hidden="true">Tom Cook</span>
-                  </Link>
-                </li>
+
+                {/* Footer in Nav */}
+                {navProfile}
               </ul>
             </nav>
           </div>
         </div>
 
-        <div className="sticky top-0 z-40 flex items-center gap-x-6 bg-indigo-600 px-4 py-4 shadow-sm sm:px-6 lg:hidden">
+        <div className="sticky top-0 z-40 flex items-center gap-x-6 bg-gray-900 px-4 py-4 shadow-sm sm:px-6 lg:hidden">
           <button type="button" onClick={() => setSidebarOpen(true)} className="-m-2.5 p-2.5 text-indigo-200 lg:hidden">
             <span className="sr-only">Open sidebar</span>
             <Bars3Icon aria-hidden="true" className="size-6" />

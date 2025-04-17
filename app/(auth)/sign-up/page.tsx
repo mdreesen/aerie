@@ -1,4 +1,5 @@
-import AuthForm from "@/components/ui/AuthForm"
+import AuthForm from "@/components/ui/AuthForm";
+import Image from "next/image";
 
 export default function Page() {
     return (
@@ -9,6 +10,15 @@ export default function Page() {
                     <AuthForm type="sign-up" />
 
                 </div>
+            </div>
+            <div className="relative hidden w-0 flex-1 lg:block">
+                <Image
+                    alt="Pay pass"
+                    src="/assets/auth.png"
+                    height={1000}
+                    width={1000}
+                    className="absolute inset-0 size-full object-cover"
+                />
             </div>
         </div>
     )
