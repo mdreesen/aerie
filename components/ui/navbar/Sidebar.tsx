@@ -37,7 +37,7 @@ function classNames(...classes: string[]) {
 }
 
 export default function Sidebar({ children, user }: { children: any, user: any }) {
-  console.log(user);
+
   const router = useRouter();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
