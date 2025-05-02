@@ -46,9 +46,7 @@ export default function Page() {
                     </div>
                   </div>
                   <div className="ml-4 shrink-0">
-                    <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                      Download
-                    </a>
+
                   </div>
                 </li>
                 <li className="flex items-center justify-between py-4 pl-4 pr-5 text-sm/6">
@@ -60,9 +58,7 @@ export default function Page() {
                     </div>
                   </div>
                   <div className="ml-4 shrink-0">
-                    <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                      Download
-                    </a>
+
                   </div>
                 </li>
               </ul>

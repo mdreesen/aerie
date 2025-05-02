@@ -27,9 +27,9 @@ const navigation = [
   { name: 'Profile', href: '/profile', icon: UsersIcon, current: false },
 ]
 const teams = [
-  { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
-  { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
-  { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
+  { id: 1, name: 'Heroicons', href: '/', initial: 'H', current: false },
+  { id: 2, name: 'Tailwind Labs', href: '/', initial: 'T', current: false },
+  { id: 3, name: 'Workcation', href: '/', initial: 'W', current: false },
 ]
 
 function classNames(...classes: string[]) {
@@ -239,7 +239,7 @@ export default function Sidebar({ children, user }: { children: any, user: any }
             <Bars3Icon aria-hidden="true" className="size-6" />
           </button>
           <div className="flex-1 text-sm/6 font-semibold text-white">Dashboard</div>
-          <Link href="#">
+          <Link href="/">
             <span className="sr-only">Your profile</span>
             {/* <img
               alt=""

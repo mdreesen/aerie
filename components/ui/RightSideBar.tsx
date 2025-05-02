@@ -1,7 +1,7 @@
 import Link from "next/link";
 import BankCard from "./BankCard";
 
-export default function RightSideBar({ user, transactions, banks }: RightSideBarProps) {
+export default function RightSideBar({ user, transactions, banks }: RightSidebarProps) {
     return (
         <div className="mt-10">
             <section className="pb-4">
@@ -19,8 +19,7 @@ export default function RightSideBar({ user, transactions, banks }: RightSideBar
             </section>
 
             <section>
-                {/* <Image /> */}
-                {transactions}
+                {/* {transactions} */}
 
                 {banks?.length > 0 && (
                     <div className="relative flex flex-1 flex-col items-center justify-center gap-5">

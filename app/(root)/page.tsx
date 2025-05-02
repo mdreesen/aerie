@@ -72,7 +72,7 @@ export default async function Page() {
                     <RightSideBar
                         user={loggedIn}
                         transactions={[]}
-                        banks={[{ currentBalance: 123.50}, {currentBalance: 124.50}]}
+                        banks={[]}
                     />
                     </div>
                 </div>

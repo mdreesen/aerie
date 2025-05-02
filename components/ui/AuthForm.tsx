@@ -11,6 +11,7 @@ import { authFormSchema } from "@/lib/utils";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signIn, signUp } from "@/actions/user.actions";
+import PlaidLink from "./PlaidLink";
 
 export default function AuthForm({ type }: { type: string }) {
     const router = useRouter();
@@ -38,13 +39,28 @@ export default function AuthForm({ type }: { type: string }) {
 
     // 2. Define a submit handler.
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        setLoading(true)
+        setLoading(true);
+
+
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
         try {
             // Signup with appwrite & create plaid token
+
+            const userData = {
+                firstName: values.firstName!,
+                lastName: values.lastName!,
+                address1: values.address1!,
+                city: values.city!,
+                state: values.state!,
+                postalCode: values.postalCode!,
+                dateOfBirth: values.dateOfBirth!,
+                ssn: values.ssn!,
+                email: values.email!,
+                password: values.password!
+            }
             if (type === 'sign-up') {
-                const newUser = await signUp(values);
+                const newUser = await signUp(userData);
                 setUser(newUser)
             }
 
@@ -59,7 +75,9 @@ export default function AuthForm({ type }: { type: string }) {
         } catch { }
         console.log(values);
         setLoading(false)
-    }
+    };
+
+    console.log(user)
 
     return (
         <div className="mt-10">
@@ -68,12 +86,13 @@ export default function AuthForm({ type }: { type: string }) {
                     <h1 className="mt-10 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-balance sm:text-5xl">
                         {user ? 'Link Account' : type === 'sign-in' ? 'Sign In' : 'Sign Up'}
                     </h1>
-                    <p className="text-16 font-normal mb-8">{user ? 'Link your account to get started' : 'Please enter your details'}</p>
+                    <span className="text-16 font-normal mb-8">{user ? 'Link your account to get started' : 'Please enter your details'}</span>
 
                     <div>
                         {user ? (
                             <div className="flex flex-col gap-4">
                                 {/* Plaid Link */}
+                                <PlaidLink user={user} variant="primary" />
                             </div>
                         ) : (
                             <>
@@ -140,7 +159,7 @@ export default function AuthForm({ type }: { type: string }) {
                                                     <CustomInput
                                                         control={form.control}
                                                         name="dateOfBirth"
-                                                        label="Date of Birth"
+                                                        label="Date of Birth (YYYY-MM-DD)"
                                                         placeholder="YYYY-MM-DD"
                                                     />
                                                 </div>
@@ -178,9 +197,9 @@ export default function AuthForm({ type }: { type: string }) {
                     </div>
 
                     <section className="flex gap-1 justify-center mt-4">
-                        <p className="text-center text-sm/6 text-gray-500">
+                        <span className="text-center text-sm/6 text-gray-500">
                             {type === 'sign-in' ? "Don't have an account?" : "Already have an account?"}
-                        </p>
+                        </span>
                         <Link className="text-center text-sm/6 text-blue-500 font-semibold" href={type === 'sign-in' ? '/sign-up' : '/sign-in'}>
                             {type === 'sign-in' ? "Sign Up" : "Sign In"}
                         </Link>
