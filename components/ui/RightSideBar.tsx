@@ -2,6 +2,7 @@ import Link from "next/link";
 import BankCard from "./BankCard";
 
 export default function RightSideBar({ user, transactions, banks }: RightSidebarProps) {
+    console.log(banks)
     return (
         <div className="mt-10">
             <section className="pb-4">
@@ -27,7 +28,7 @@ export default function RightSideBar({ user, transactions, banks }: RightSidebar
                             <BankCard
                                 key={banks[0].$id}
                                 account={banks[0]}
-                                userName={user?.name}
+                                userName={`${user.firstName} ${user.lastName}`}
                                 showBalance={false}
                             />
                         </div>
@@ -36,7 +37,7 @@ export default function RightSideBar({ user, transactions, banks }: RightSidebar
                                 <BankCard
                                     key={banks[1].$id}
                                     account={banks[1]}
-                                    userName={user?.name}
+                                    userName={`${user.firstName} ${user.lastName}`}
                                     showBalance={false}
                                 />
                             </div>

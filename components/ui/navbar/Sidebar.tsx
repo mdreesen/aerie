@@ -26,11 +26,6 @@ const navigation = [
   { name: 'Reports', href: '/', icon: ChartPieIcon, current: false },
   { name: 'Profile', href: '/profile', icon: UsersIcon, current: false },
 ]
-const teams = [
-  { id: 1, name: 'Heroicons', href: '/', initial: 'H', current: false },
-  { id: 2, name: 'Tailwind Labs', href: '/', initial: 'T', current: false },
-  { id: 3, name: 'Workcation', href: '/', initial: 'W', current: false },
-]
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -53,7 +48,7 @@ export default function Sidebar({ children, user }: { children: any, user: any }
 
 
       <div className='text-xl font-bold text-white-700 flex flex-col justify-center items-center'>
-        <span aria-hidden="true">{user?.name[0]}</span>
+        <span aria-hidden="true">{user?.firstName ?? ''}</span>
       </div>
       <div>
         <h1 className='text-14 truncate font-semibold text-white-600'>{user?.name}</h1>
